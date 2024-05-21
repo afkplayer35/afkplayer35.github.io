@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LINE Official Account</title>
+  <style>
+    .icon {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    // 檢測手機系統
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isAndroid = userAgent.indexOf("android") > -1;
+    var isiOS = /iphone|ipad|ipod/.test(userAgent);
+
+    // 根據系統自動添加桌面圖標
+    window.addEventListener('load', function() {
+      if (isAndroid) {
+        // Android 系統下添加桌面圖標
+        var link = document.createElement('a');
+        link.setAttribute('href', 'intent://ti/p/~@992gkaof#Intent;scheme=line;package=jp.naver.line.android;end');
+        link.setAttribute('class', 'icon');
+        link.style.backgroundImage = 'url(https://lh3.googleusercontent.com/pw/AP1GczMrb-92UE4o4p0FIZVELdcaQPCjPkexFEGJvlpBZ5tdUqHg04cEiAD-FwX4sXgdUZeLdIJJ8gLlx3so_ta-d0kscaqBSSlow8pb9Ouq6rXf7Y9YeA=w400)';
+        document.body.appendChild(link);
+      } else if (isiOS) {
+        // iOS 系統下添加桌面圖標
+        var link = document.createElement('a');
+        link.setAttribute('href', 'line://ti/p/~@992gkaof');
+        link.setAttribute('class', 'icon');
+        link.style.backgroundImage = 'url(https://lh3.googleusercontent.com/pw/AP1GczMrb-92UE4o4p0FIZVELdcaQPCjPkexFEGJvlpBZ5tdUqHg04cEiAD-FwX4sXgdUZeLdIJJ8gLlx3so_ta-d0kscaqBSSlow8pb9Ouq6rXf7Y9YeA=w400)';
+        document.body.appendChild(link);
+      }
+    });
+
+    function addToHomeScreen() {
+      // 提示用戶添加圖標到桌面
+      if (isAndroid) {
+        alert('請長按圖標,選擇"添加到桌布"');
+      } else if (isiOS) {
+        alert('請點擊分享按鈕,選擇"添加到桌布"');
+      }
+    }
+  </script>
+</head>
+<body>
+  <p>點擊下方圖標即可將其添加到手機桌面</p>
+  <button onclick="addToHomeScreen()">添加到桌面</button>
+</body>
+</html>
